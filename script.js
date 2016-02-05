@@ -1,49 +1,51 @@
 $(document).ready(function() {
-	$('#username').keydown(function() {
-  		$('#tel').show(function() {
-    	});
-    		if (this.value == this.defaultValue){
-			this.value = '';
-			}
+	$('#username').keyup(function() {
+		if (this.value !='') {
+			$('#tel').show();
+		}
 	});
 	
-	$('#tel').keydown(function() {
-  		$('#email').show(function() {
-    	});
-    		if (this.value == this.defaultValue){
-			this.value = '';
-			}
+	$('#tel').keyup(function() {
+		if (this.value !='') {
+			$('#email').show();
+		}
 	});
 	
-	$('#email').keydown(function() { 
-		$('#password').show(function() {
-    	});
-    		if (this.value == this.defaultValue){
-			this.value = '';
-			}
+	$('#email').keyup(function() { 
+		if (this.value !='') {
+			$('#password').show();
+		}
 	});
 	
-	$('#password').keydown(function() {
-  		$('.checkbox').show(function() {
-    	});
-    		if (this.value == this.defaultValue){
-			this.value = '';
-			}
+	$('#password').keyup(function() {
+		if (this.value !='') {
+			$('.checkbox').show();
+		}
 	});
 	
 	$('.checkbox').click(function() {
-  		$('input:submit').show(function() {
-    	});
-    		if (this.value == this.defaultValue){
-			this.value = '';
-			}
+		if (this.value !='') {
+			$('input:submit').show();
+		}
 	});
 
+	$('form').submit(function(event) {
+		event.preventDefault();
+		$('.block').hide();
+		$('.greetings').css('display', 'block');
+		var username = $ ('#username').val();
+		$('.greetings').append('<h2>' + username + '!' + '</h2>');
+	})
+
 	$('input:not(:last-child)').blur(function() {
-		$('.message').show(function() {
-    	});
-			$('input:not(:last-child)').css('border', '2px solid red').css('color', 'red')
-  	});
+		if (this.value == ''){
+			$('.message').show();
+			$('input:not(:last-child)').css('border', '2px solid red').css('color', 'red');
+		} else {
+			$('.message').hide();
+			$('input:not(:last-child)').css('border', '').css('color', '');
+		}
+	});
 });
 
 
